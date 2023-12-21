@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <script type="text/javascript" src="./jsdlzc/easyui/jquery.min.js">
+    </script>
+    <script type="text/javascript" src="./jsdlzc/easyui/jquery.easyui.min.js">
+    </script>
+    <script type="text/javascript" src="./jsdlzc/easyui/locale/easyui-lang-zh_CN.js">
+    </script>
+
+
+
+    <script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/supermap/SuperMap.Include.js"></script>
+    <script src="./js/spectrum.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./jsdlzc/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="./jsdlzc/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="./jsdlzc/easyui/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="./jsdlzc/easyui/themes/color.css">
+
+    <link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="./css/pretty.css" rel="stylesheet">
+    <title>登录-用户</title>
+
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+<body background="./images/背景图01.jpg">
+    <!-- 为了保证背景图不受干扰，对default/easyui.css中的.window-proxy-mask添加了一个属性optian透明度进行了设置 -->
+    <div id='dlg' style="padding:10px 30px">
+        <br>
+        <p> <b>用户名称</b> &nbsp&nbsp&nbsp&nbsp <input id="user" type="text" class="easyui-textbox"></p>
+        <p> <b>登录密码</b> &nbsp&nbsp&nbsp&nbsp <input id='psd' type="password" class="easyui-passwordbox"></p>
+        <div id='btn' style='text-align:center'>
+            <button id='dl'>登录</button>
+        </div>
+        <script type="text/javascript" src='./jsdlzc/dl.js'>
+        </script>
+</body>
+
+</html>

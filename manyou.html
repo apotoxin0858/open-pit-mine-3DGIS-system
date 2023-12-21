@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>沿线飞行</title>
+    <link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/pretty.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrap-select.min.js"></script>
+    <script src="./js/config.js"></script>
+    <script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+    <script src="./showorHide.js"></script>
+
+    <style>
+        #play {
+            content: url(./images/play.png);
+            height: 30px;
+            padding: 5px;
+        }
+
+        #pause {
+            content: url(./images/pause.png);
+            height: 30px;
+            padding: 5px;
+        }
+
+        #stop {
+            content: url(./images/stop.png);
+            height: 30px;
+            padding: 5px;
+        }
+
+        .bootstrap-select {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div id="cesiumContainer"></div>
+<div id='loadingbar' class="spinner">
+    <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+</div>
+<div id='toolbar' class="param-container tool-bar">
+    <span type="button" id="play"  title="开始">开始</span>
+    <span type="button" id="pause"  title="暂停">暂停</span>
+    <span type="button" id="stop"  title="停止">停止</span>
+    <div style="width: 150px;">
+    </div>
+<script>
+    //请在联网状态下查看此飞行范例
+
+    var flyManager;
+    var toolbar = document.getElementById('toolbar');
+    function onload(Cesium) {
+        $('#loadingbar').remove();//移除加载圈
+        var viewer = new Cesium.Viewer('cesiumContainer',{
+        //创建地形服务提供者的实例，url为SuperMap iServer发布的TIN地形服务
+        terrainProvider : new Cesium.CesiumTerrainProvider({
+            url : 'http://localhost:8090/iserver/services/3D-dagushanproject/rest/realspace/datas/MathAnalystResult_1@dixing',
+            isSct : true//地形服务源自SuperMap iServer发布时需设置isSct为true
+        }),
+    });
+    var scene = viewer.scene;
+    addEntity_geometry(viewer, 'dagushanproject', 'road', 'entity_road');
+    addEntity_geometry(viewer, 'dagushanproject', 'duanceng', 'duanceng');
+    addEntity_geometry(viewer, 'dagushanproject', 'TopLine', 'slopeline');
+    //添加SuperMap iServer发布的影像服务
+    var layer = viewer.imageryLayers.addImageryProvider(new Cesium.SuperMapImageryProvider({
+        url : 'http://localhost:8090/iserver/services/3D-dagushanproject/rest/realspace/datas/dagushanDOM'
+    }));
+
+    viewer.scene.camera.setView({
+        destination :Cesium.Cartesian3.fromDegrees(123.059790085227, 41.0514522609158,2020.95949484129),
+                    orientation: {
+                        heading: Cesium.Math.toRadians(355.588685551488),
+                        pitch: Cesium.Math.toRadians(-89.9850890883418),
+                    }
+    });
+    viewer.dataSources.add(Cesium.KmlDataSource.load('./kml/biaogao.kml',{
+        camera : viewer.scene.camera,
+        canvas : viewer.scene.canvas
+    })).then(function(dataSource){})
+    var routes = new Cesium.RouteCollection(viewer.entities);
+    //添加fpf飞行文件，fpf由SuperMap iDesktop生成
+    var fpfUrl = 'routefly/NewSceneRoutes.fpf';
+    routes.fromFile(fpfUrl);
+    //初始化飞行管理
+    var flyManager = new Cesium.FlyManager({
+        scene: scene,
+        routes: routes
+    });
+    flyManager.readyPromise.then(function() { // 飞行路线就绪
+        var currentRoute = flyManager.currentRoute;
+        console.log(currentRoute);
+        currentRoute.isFlyLoop = true;
+        currentRoute.isLineVisible = false;
+        currentRoute.isStopVisible = false;
+           //生成飞行文件中的所有站点列表
+        //    console.log(allStops.length);
+        //             var route = flyManager.currentRoute;
+        //             var stop = route.get(index);
+        //             flyManager.currentStopIndex = index;
+        //             console.log(index);
+        //             flyManager.viewToStop(stop);
+        var allStops = flyManager.getAllRouteStops();
+        flyManager && flyManager.play();
+        $('#play').click(function () {
+            flyManager && flyManager.play();
+                });
+                $('#pause').click(function () {
+                    flyManager && flyManager.pause();
+                });
+                $('#stop').click(function () {
+                    flyManager && flyManager.stop();
+                });
+})
+    }
+</script>
+</body>
+</html>

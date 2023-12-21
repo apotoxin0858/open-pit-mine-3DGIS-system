@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+<open>1</open>
+<visibility>1</visibility>
+<name><![CDATA[test]]></name>
+<Placemark>
+<name><![CDATA[undefined]]></name>
+<description><![CDATA[]]></description>
+<Model>
+<Location>
+<gx:MultiTrack>
+<gx:interpolate>1</gx:interpolate>
+<gx:Track>
+<altitudeMode>absolute</altitudeMode>
+<when>2016-05-10T08:55:10.52800000000570435Z</when>
+<gx:coord>123.05746905272845 41.050727417760946 91.70907062292099</gx:coord>
+<when>2016-05-10T08:55:15.4617916505085304Z</when>
+<gx:coord>123.05651877265139 41.051621341469044 85.701366132125258</gx:coord>
+<when>2016-05-10T08:55:17.37397817126475275Z</when>
+<gx:coord>123.0567110566966 41.051698924939323 84.577199866995215</gx:coord>
+<when>2016-05-10T08:55:20.37397817126475275Z</when>
+<gx:coord>123.05708394402967 41.051480800707573 81.2123493840918</gx:coord>
+<when>2016-05-10T08:55:32.37397817126475275Z</when>
+<gx:coord>123.05819623302318 41.050869536755208 70.0015202825889</gx:coord>
+<when>2016-05-10T08:55:36.37397817126475275Z</when>
+<gx:coord>123.05845447439167 41.050605285640955 67.866490758024156</gx:coord>
+<when>2016-05-10T08:55:42.37397817126475275Z</when>
+<gx:coord>123.0585741027182 41.049932982455893 62.2349271196872</gx:coord>
+<when>2016-05-10T08:55:50.37397817126475275Z</when>
+<gx:coord>123.05883178147866 41.04952665778454 58.917499301023781</gx:coord>
+<when>2016-05-10T08:55:56.37397817126475275Z</when>
+<gx:coord>123.0593627399106 41.049265983639174 54.036085511557758</gx:coord>
+<when>2016-05-10T08:56:02.37397817126475275Z</when>
+<gx:coord>123.06016056803014 41.049222223442904 48.425673115998507</gx:coord>
+<when>2016-05-10T08:56:08.37397817126475275Z</when>
+<gx:coord>123.06077770270997 41.049272368427843 44.526742091402411</gx:coord>
+<when>2016-05-10T08:56:11.37397817126475275Z</when>
+<gx:coord>123.06101257735007 41.049353429885961 43.9958271374926</gx:coord>
+<when>2016-05-10T08:56:13.37397817126475275Z</when>
+<gx:coord>123.06099012687869 41.049439273771952 44.018168272450566</gx:coord>
+<when>2016-05-10T08:56:20.37397817126475275Z</when>
+<gx:coord>123.06014219943638 41.049455627864567 44.862542833201587</gx:coord>
+</gx:Track>
+</gx:MultiTrack>
+</Location>
+<Orientation>
+<heading>270</heading>
+<tilt>0</tilt>
+<roll>0</roll>
+</Orientation>
+<Scale>
+<x>10</x>
+<y>10</y>
+<z>10</z>
+</Scale>
+<Link>
+<href>../models/kache.gltf</href>
+</Link>
+</Model>
+</Placemark>
+</Document>
+</kml>

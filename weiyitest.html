@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>温度数据表</title>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/laydate.js"></script>
+    <style type="text/css">
+        html {
+            background-color: #E3E3E3;
+            font-size: 14px;
+            color: #000;
+            font-family: '微软雅黑'
+        }
+
+        h2 {
+            line-height: 30px;
+            font-size: 20px;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: none;
+            width: 600px;
+            text-align: center;
+            margin: 0 auto
+        }
+
+        td {
+            border: solid #000 1px;
+        }
+
+        .selectdate {
+            margin: 0 auto;
+            width: 731px;
+        }
+    </style>
+</head>
+</head>
+
+<body>
+    <fieldset><legend style="color: rgb(194, 14, 44);font-size: 15px"> 监测分析功能-实时数据</legend><p><span>开始时间</span><span><input type="text" name="startdate" id="startdate" class="laydate-icon" onclick="laydate()"></span><span>结束时间</span><span><input type="text" name="stopdate" id="stopdate" class="laydate-icon" ></span><span><input type="button" value="查询" onclick="wendubiaoqingqi()"></span></p><div class="param-item" style="border-width: 2px;border-style:dashed;"> <button type="button" id="now" class="button black" style="color: green; border-radius: 50%;margin-left: 50px;margin-top: 5px">NOW</button> </div> </fieldset><div class="selectdate"></div><table><thead><tr><td width="100">序号</td><td width="100">传感器名称</td><td width="100">X/m</td><td width="100">Y/m</td><td width="100">Z/m</td><td width="100">X轴差值/m</td><td width="100">Y轴差值/m</td><td width="100">Z轴差值/m</td><td width="300">时间</td></tr>
+</thead><tbody id="tbody"></tbody></table>
+</body>
+<script>
+    ; !function () {
+        laydate({
+            elem: '#stopdate'
+        })
+    }();
+
+
+    function wendubiaoqingqi() {
+        var oInput1 = document.getElementById("startdate").value;
+        var oInput2 = document.getElementById("stopdate").value;
+        if (oInput1 != "") {
+            $.ajax({
+                url: 'weiyi.php',
+                type: 'post',
+                data: {
+                    startdate: oInput1,
+                    stopdate: oInput2,
+                },
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data == 0) {
+                    $.messager.progress({
+                        text: "查询失败",
+                    });
+    
+                } else {
+                    //ajax异步加载，遍历数组，获取到的数组赋值
+                    var dataArray = [];
+                    var timeArray = [];
+                    for (var i = 0; i < data.length; i++) {
+                        dataArray.push(data[i][1]);
+                        timeArray.push(data[i][2]);
+                    };
+                };
+                creatMonitorChart (dataArray, timeArray, container);
+                },
+                error: function () {
+                    alert("无数据！");
+
+                }
+            });
+        } else {
+            alert("请输入开始时间！");
+        }
+    }
+    function creatMonitorChart (dataArray, timeArray, container){
+        var myChart = echarts.init(document.getElementById(container));
+        var weiyiIsData =[];
+        var timeIsData =[];
+        weiyiIsData[0] = dataArray[0];
+        timeIsData[0] =  timeArray[0] ;
+        var option = {
+            backgroundColor: '#404a59',
+            color:['red','red'],
+                    title: {
+    text: '大孤山监测位移-时间关系图',
+    subtext: 'DataResult from DGS OpenPit',
+    left: 'center',
+    textStyle: {
+        color: '#fff'
+    }
+    },
+        toolbox: {
+    show: true,
+    feature: {
+        dataZoom: {
+            yAxisIndex: 'none'
+        },
+        dataView: { readOnly: false },
+        restore: {},
+        saveAsImage: {}
+    },
+    left: 'left',
+    iconStyle: {
+        borderColor: 'white',
+    },
+    },
+    tooltip: {
+                show: true,
+                trigger:'axis',
+             dataZoom: {
+            yAxisIndex: 'none'
+        },
+                axisPointer:{
+                    type:'cross',
+                    crossStyle:{
+                        type:'dotted',
+                        color:'red',
+                        width:2
+                    },
+                },
+            dataView: { readOnly: false },
+        magicType: { type: ['line', 'bar'] },
+        restore: {},
+        saveAsImage: {}
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : timeIsData,
+                    name:'监测时间',
+                    nameTextStyle:{
+                        color:'black',
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                        align: 'center',
+                        padding: [3, 50, -20, -20]
+                    },
+                    boundaryGap: false,
+                    axisLabel:{
+                        textStyle:{
+                            color:'red',
+                            fontWeight:'bold'
+                        }
+                    },
+                     axisLine: {
+                     symbol: 'arrow',
+                     lineStyle: {
+                       color: 'green',
+                       width: '4'
+                          }
+                },
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value', 
+                    min: 'dataMin',
+                    max: 'dataMax',
+                                axisLabel: {
+        textStyle: {
+            color: 'yellow',
+            fontWeight: 'bold',
+        },
+    },
+    axisLine: {
+        symbol: 'arrow',
+        lineStyle: {
+            color: 'yellow',
+            width: '4',
+        }
+    },
+    splitLine: {
+        show: false
+    },
+                    name:'位移变化量mm/s',
+                    nameTextStyle: {
+                    color: 'black',
+                    fontSize: 15,
+                    fontWeight: 'bold',
+    
+                 }
+                }
+            ],
+            series : [{
+    name: '当前时间',              
+    type: 'scatter',
+    symbolSize: 1,
+    data: timeIsData,
+    itemStyle: {
+        normal: {
+            borderWidth: 3,
+            borderColor: 'white',
+            color: '#c7ff3d'
+        }
+    }
+    },{
+    name:"位移",
+    type:"line",
+    data:weiyiIsData,
+    itemStyle:{
+            normal: {
+            width: 3,
+            shadowColor: 'rgba(255,0,0,0.9)',
+            shadowBlur: 10,
+            shadowOffsetY: 15
+        }
+    },
+    lineStyle:{
+    type:'solid',
+    color: '#c7ff3d'
+    },
+    markLine: {
+        data: [
+            {type: 'average',symbol:'diamond', name: '平均值',lineStyle:{color:'#ffd580',width:5}},
+            [{
+                symbol: 'diamond',
+                x: '90%',
+                lineStyle:{
+                    color:'#33f4ff',
+                    width:5
+                },
+                yAxis: 'min'
+            }, {
+                symbol: 'diamond',
+                label: {
+                    normal: {
+                        position: 'start',
+                        formatter: '最小值'
+                    }
+                },
+                lineStyle:{
+                    color:'#33f4ff',
+                    width:5
+                },
+                type: 'min',
+                name: '最低点'
+            }],
+            [{
+                symbol: 'triangle',
+                x: '90%',
+                lineStyle:{
+                    color:'#ff33b2',
+                    width:5
+                },
+                yAxis: 'max'
+            }, {
+                symbol: 'triangle',
+                label: {
+                    normal: {
+                        position: 'start',
+                        formatter: '最大值'
+                    }
+                },
+                lineStyle:{
+                    color:'#33fdff',
+                    width:5
+                },
+                type: 'max',
+                name: '最高点'
+            }]
+        ]
+    }
+    }
+     ]};
+    myChart.setOption(option);
+</script>
+</html>
