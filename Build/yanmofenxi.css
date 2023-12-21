@@ -1,0 +1,184 @@
+.drawCur {
+    cursor: url(../images/cur/draw.cur), auto;
+}
+
+#split {
+    position: fixed
+}
+
+#float {
+    position: fixed;
+}
+
+html,
+body,
+#cesiumContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000000;
+}
+
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 170px;
+}
+
+.form-group::before {
+    content: attr(data-foo);
+    color: black;
+}
+
+.form-group {
+    width: 80%
+}
+
+.form-control {
+    position: relative;
+    left: 5%;
+    width: auto;
+    height: auto;
+
+}
+
+#setingBarZ,
+#setingBarF {
+    margin: 5px;
+    padding: 2px 5px;
+    background: rgba(119, 117, 117, 0.4);
+    padding: 8px;
+    border-radius: 4px;
+    color: cornflowerblue
+}
+
+#mytimeZ,
+#mytimeF {
+    position: relative;
+    left: 0px;
+    top: -70px;
+    color: aliceblue;
+    text-align: center;
+    font-weight: bold;
+    margin: 0px 0px;
+}
+
+#imgZ,
+#imgF {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+#jishiqiZ,
+#jishiqiF {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    color: aliceblue;
+    text-align: center;
+    font-weight: bold;
+}
+
+#allTimeZ,
+#allTimeF {
+    position: relative;
+    left: 0px;
+    top: -30px;
+    margin: 0px;
+    color: aliceblue;
+    text-align: center;
+    font-weight: bold;
+}
+
+.wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0px 0px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    text-align: center;
+    vertical-align: middle;
+    visibility: hidden;
+}
+
+.wrapper1 {
+    width: 150px;
+    height: 150px;
+    margin: 0px 0px;
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+    text-align: center;
+    vertical-align: middle;
+    visibility: visible;
+}
+
+#bubbleF {
+    margin: 0px;
+    padding: 0px 0px;
+    position: absolute;
+    left: 20%;
+    top: 600px;
+    width: 60%;
+    opacity: 1;
+    display: none;
+}
+
+#chartsF {
+    margin: 0px;
+    padding: 0px 0px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1000px;
+    height: 500px;
+    opacity: 1;
+}
+
+#biaogeF {
+    background-color: #404a59;
+    margin: 0px;
+    padding: 0px 0px;
+    position: absolute;
+    left: 500px;
+    top: 100px;
+    width: 1020px;
+    height: 500px;
+    opacity: 1;
+}
+
+table.hovertable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 5px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+
+table.hovertable th {
+    background-color: #c3dde0;
+    border-width: 3px;
+    padding: 8px;
+    border-style: solid;
+    border-color: teal;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+table.hovertable tr {
+    background-color: #d4e3e5;
+}
+
+table.hovertable td {
+    border-width: 2px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}

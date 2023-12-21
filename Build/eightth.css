@@ -1,0 +1,31 @@
+body .mainmenu:after { clear: both; content: " "; display: block; }
+body .mainmenu li{ 
+    float:left;
+    margin-left: 2.5%;
+    margin-top: 2.5%;
+    width: 30%;  
+    border-radius:3px; 
+    overflow:hidden;
+}
+
+body .mainmenu li div{ display:block;  color:#FFF;   text-align:center }
+body .mainmenu li:hover{transform: scale(1.2,1.2);box-shadow: 0 0 10px #0000ff;cursor: pointer;}
+body .mainmenu li div b{ 
+    display:block; height:80px;
+}
+body .mainmenu li div img{ 
+    margin: 5px auto 5px;
+    width: 65px;
+    height: 65px;
+}
+
+body .mainmenu li div span{ display:block; height:30px; line-height:30px;background-color:#FFF; color: #999; font-size:14px; }
+
+body .mainmenu li:nth-child(8n+1) {background-color:#36A1DB}
+body .mainmenu li:nth-child(8n+2) {background-color:#678ce1}
+body .mainmenu li:nth-child(8n+3) {background-color:#8c67df}
+body .mainmenu li:nth-child(8n+4) {background-color:#84d018}
+body .mainmenu li:nth-child(8n+5) {background-color:#14c760}
+body .mainmenu li:nth-child(8n+6) {background-color:#f3b613}
+body .mainmenu li:nth-child(8n+7) {background-color:#ff8a4a}
+body .mainmenu li:nth-child(8n+8) {background-color:#fc5366}

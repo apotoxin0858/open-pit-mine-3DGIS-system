@@ -1,0 +1,199 @@
+.selected {
+    /* background: #3f8eb9; */
+    -webkit-box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.45);
+    box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.45);
+}
+
+
+/* 最长用的设置工具条 */
+
+.nav-bar {
+    display: block;
+    position: absolute;
+    left: 3.8%;
+    top: -8%;
+    margin: 0px 0px 0px 0px;
+    width: auto;
+    height: auto;
+    border: 2px solid #bed1df;
+    /* border-radius: 10%; */
+    border-radius: 10px;
+    background-color: white;
+    opacity: 0.8;
+    -webkit-box-shadow: -2px 3px 2px 0px rgba(5, 0, 0, 0.11);
+    -moz-box-shadow: -2px 3px 2px 0px rgba(5, 0, 0, 0.11);
+    box-shadow: -2px 3px 2px 0px rgba(5, 0, 0, 0.11);
+    animation-name: rightleft;
+    animation-duration: 1s;
+    animation-timing-function: 1s;
+    animation-delay: .3s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-iteration-count: 1
+}
+@keyframes leftright {
+    from {
+        margin-top: 0%;
+    }
+    to {
+        margin-top: 3%;
+    }
+}
+
+@keyframes rightleft {
+    from {
+        margin-bottom:3%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+@keyframes huigui {
+    from {
+        margin-bottom:3%;
+    }
+    to {
+        margin-top: -2%;
+    }
+}
+
+
+/* 列表样式 */
+
+.nav-bar ul {
+    padding: 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+}
+
+.nav-bar li {
+    height: 50px;
+    width: 50px;
+    color: #a722be;
+    margin: 20px 5px 20px 5px;
+    float: left;
+    /* margin: 50px; */
+}
+
+
+/* ..............................一级列表................................ */
+
+.level-one {
+    position: relative;
+}
+
+li.level-one {
+    font-size: 1.5em;
+    text-align: center;
+    border-top: 1px solid #a722be;
+    border-radius: 40%;
+    cursor: pointer;
+    animation-name: rightleft;
+}
+
+li.level-one:first-child {
+    border-top: none;
+}
+
+li.level-one:hover {
+    background: #a722be;
+    box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.45);
+}
+.level-one .selected:hover{
+    background: #07ce32;
+    animation-name: rightleft;
+}
+
+
+/*............................. 二级列表............................................. */
+
+.level-two {
+    display: none;
+    position: absolute;
+    font-weight: bolder;
+    height: 40px;
+    width: 100px;
+    left: 0%;
+    top: 90%;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.7em;
+    text-align: center;
+    padding-top: 20%
+}
+.level-two:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 9px 9px 9px 0;
+    border-color: transparent white;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: -9px;
+    top: 15px;
+}
+
+.level-one:hover>.level-two {
+    display: block;
+}
+
+#mainButton {
+    display: block;
+    /* border: 2px solid #bed1df; */
+    /* border-radius: 10%; */
+    /* border-radius: 10px; */
+    /* background-color: white; */
+    opacity: 1;
+    -webkit-box-shadow: -2px 3px 2px 0px rgba(5, 0, 0, 0.11);
+    -moz-box-shadow: -2px 3px 2px 0px rgba(5, 0, 0, 0.11);
+    box-shadow: -2px 3px 2px 0px rgba(5, 0, 0, 0.11);
+    animation-name: rightleft;
+    animation-duration: .3s;
+    animation-timing-function: linear;
+    animation-delay: .3s;
+    animation-fill-mode: both;
+    animation-play-state: running;
+    animation-iteration-count: 1;
+    width: 70px;
+    height: 50px;
+    top: 650px;
+    left: 75px;
+    position: absolute;
+}
+
+#mainButton:hover {
+    background: #3f8eb9;
+    box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+
+/* 
+控制路线飞行的开始=关闭=暂停按钮 */
+
+#play {
+    content: url(../images/play.gif);
+    height: 50px;
+    width: auto;
+    padding: 5px;
+}
+
+#pause {
+    content: url(../images/pause.gif);
+    height: 50px;
+    width: auto;
+    padding: 5px;
+}
+
+#stop {
+    content: url(../images/stop.gif);
+    height: 50px;
+    width: auto;
+    padding: 5px;
+}
